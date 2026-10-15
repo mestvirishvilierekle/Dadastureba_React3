@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 export default function ProductCard({ item, isFav, onToggleFav }) {
+  if (!item) return null;
+
   return (
     <div style={{ 
       border: '1px solid #e2e8f0', 
@@ -10,12 +12,12 @@ export default function ProductCard({ item, isFav, onToggleFav }) {
       background: 'white', 
       display: 'flex', 
       flexDirection: 'column', 
-      justify: 'space-between',
+      justifyContent: 'space-between',
       boxShadow: '0 2px 8px rgba(0,0,0,0.05)'
     }}>
       <div>
         <div style={{ height: '180px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '12px' }}>
-          <img src={item.image} alt={item.title} style={{ maxHeight: '100%', maxWidth: '100%', objectFit: 'contain' }} />
+          <img src={item?.image} alt={item?.title} style={{ maxHeight: '100%', maxWidth: '100%', objectFit: 'contain' }} />
         </div>
         <h3 style={{ 
           fontSize: '15px', 
@@ -25,17 +27,17 @@ export default function ProductCard({ item, isFav, onToggleFav }) {
           lineHeight: '1.4',
           minHeight: '42px'
         }}>
-          {item.title}
+          {item?.title}
         </h3>
-        <p style={{ fontWeight: 'bold', fontSize: '16px', color: '#2563eb', margin: '0 0 16px 0' }}>₾ {item.price}</p>
+        <p style={{ fontWeight: 'bold', fontSize: '16px', color: '#2563eb', margin: '0 0 16px 0' }}>₾ {item?.price}</p>
       </div>
 
       <div style={{ display: 'flex', justifyContent: 'space-between', gap: '8px', paddingTop: '12px', borderTop: '1px solid #f1f5f9' }}>
-        <Link to={`/products/${item.id}`} style={{ padding: '8px 14px', background: '#f1f5f9', color: '#334155', borderRadius: '6px', textDecoration: 'none', fontSize: '13px', fontWeight: '500' }}>
+        <Link to={`/products/${item?.id}`} style={{ padding: '8px 14px', background: '#f1f5f9', color: '#334155', borderRadius: '6px', textDecoration: 'none', fontSize: '13px', fontWeight: '500' }}>
           ნახვა
         </Link>
         <button 
-          onClick={() => onToggleFav(item.id)}
+          onClick={() => onToggleFav && item?.id && onToggleFav(item.id)}
           style={{ 
             padding: '8px 14px', 
             borderRadius: '6px', 
